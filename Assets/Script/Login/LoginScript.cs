@@ -75,6 +75,7 @@ public class LoginScript : MonoBehaviour
             print("token ve id kayıt ");
             print("token:"+PlayerProperties.token_ );
             print("id:"+PlayerProperties.id_);
+
         }
         else
             Debug.Log("response failed");

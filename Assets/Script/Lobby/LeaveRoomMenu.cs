@@ -6,7 +6,6 @@ using UnityEngine;
 public class LeaveRoomMenu : MonoBehaviour
 {
 
-    //Room leave 
 
     private RoomsCanvases _roomsCanvases;
 
@@ -25,7 +24,6 @@ public class LeaveRoomMenu : MonoBehaviour
     {
         PlayerProperties.resetdataGame();
         _content.DestroyChildren();
-        print("leave room by button");
         PhotonNetwork.LeaveRoom(true);
         _roomsCanvases.CurrentRoomsCanvas.Hide();
         _playerlistingMenu._listings.Clear(); 

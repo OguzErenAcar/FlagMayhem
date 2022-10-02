@@ -15,15 +15,13 @@ public class Flag : MonoBehaviour
         flagbase = this.gameObject.transform.parent.gameObject;
     }
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        GameObject Player = null;
-        if (collision.tag == "Player")
-        {
-            Player = collision.gameObject;
+    { 
+        if (collision.tag == "Player"&&  player==null)
+        { 
             GameObject Flag = GameObject.Find("Flag");   
-            this.transform.parent = Player.transform;
-            Player.GetComponent<Character_Controller>().flag=this.gameObject.transform.GetComponent<Flag>();
-            player = Player.GetComponent<Character_Controller>();
+            this.transform.parent = collision.gameObject.transform;
+            collision.gameObject.GetComponent<Character_Controller>().flag=this.gameObject.transform.GetComponent<Flag>();
+            player = collision.gameObject.GetComponent<Character_Controller>();
         }
 
     }

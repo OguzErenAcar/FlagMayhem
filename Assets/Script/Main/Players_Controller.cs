@@ -87,6 +87,10 @@ public class Players_Controller : MonoBehaviourPun
         }
     }
 
+public void setbasePlayers(){
+    TeamBlue.setbaseTeam();
+    TeamRed.setbaseTeam();
+}
 
 
 

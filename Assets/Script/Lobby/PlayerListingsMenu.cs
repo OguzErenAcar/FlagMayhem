@@ -25,42 +25,25 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
     private Player lastPlayer;
 
-    void Awake()
-    {
-
-        // print("asdadaf");
-        // PhotonNetwork.AutomaticallySyncScene = true;
-        // GetCurrentRoomPlayers();
-    }
-
-
-
+    
 
     public void FirstInitialize(RoomsCanvases canvases)
-    {
-        print("fi");
+    { 
         _roomsCanvases = canvases;
     }
 
 
-    // public override void OnLeftRoom()
-    // {   print("destroy child");
-    //     _content.DestroyChildren();
-    // }
     public void GetCurrentRoomPlayers()
     {
 
         if (!PhotonNetwork.IsConnected)
-        {
-
+        { 
             return;
         }
         if (PhotonNetwork.CurrentRoom == null || PhotonNetwork.PlayerList == null)
         {
             return;
-        }
-
-        //listeye yeni gelenin indexi 0 oluyor 
+        } 
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
             AddPlayerListing(playerInfo.Value);
@@ -90,12 +73,14 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
     private void setroomMasterClient()
     {
 
-        
-        // print("local  " + PhotonNetwork.LocalPlayer.NickName + " " + PlayerProperties.sira_);
-            print("sıra "+  PlayerProperties.sira_);
+
         GameObject StartGameButton = transform.Find("StartGame").gameObject;
-       
-        if (PlayerProperties.sira_!=0)
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
+        {
+            StartGameButton.SetActive(false);
+        }
+        else if (PlayerProperties.sira_ != 0)
         {
             StartGameButton.SetActive(false);
         }
@@ -105,7 +90,9 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
             StartGameButton.SetActive(true);
         }
 
+
     }
+
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
@@ -113,6 +100,7 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
         //   setroomid();
 
+        setroomMasterClient();
     }
     //baska biri odadan çıkınca 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -150,6 +138,20 @@ public class PlayerListingsMenu : MonoBehaviourPunCallbacks
 
 
     }
+    void Awake()
+    {
+
+        // print("asdadaf");
+        // PhotonNetwork.AutomaticallySyncScene = true;
+        // GetCurrentRoomPlayers();
+    }
+
+
+    // public override void OnLeftRoom()
+    // {   print("destroy child");
+    //     _content.DestroyChildren();
+    // }
+
 
 
 }

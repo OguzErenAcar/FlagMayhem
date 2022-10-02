@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class PlayerProperties
-{
-    // private static string email="";
-    // private static string password="";
+public static class PlayerProperties{
     private static string token = "";
     private static bool OnLogin = false;
     private static string id = "";
@@ -20,15 +17,10 @@ public static class PlayerProperties
     private static int sira = 0;
     public static bool deneme = false;
 
-
-    //  public static string email_  {   get   {   return email;   }    set    {  email = value;  }  }
-    //  public static string password_  {   get   {   return password;   }    set    {  password = value;  }  }
-
     public static int sira_ { get { return sira; } set { sira = value; } }
     public static string token_ { get { return token; } set { token = value; } }
     public static bool OnLogin_ { get { return OnLogin; } set { OnLogin = value; } }
     public static string id_ { get { return id; } set { id = value; } }
-
     public static string CurrentRoomİd_ { get { return id; } set { id = value; } }
     public static string nickname_ { get { return nickname; } set { nickname = value; } }
     public static int kill_ { get { return kill; } set { kill = value; } }

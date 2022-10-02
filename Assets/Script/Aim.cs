@@ -20,12 +20,16 @@ public class Aim : MonoBehaviour, IPunObservable
         {
             stream.SendNext(ArmL.transform.position);
             stream.SendNext(ArmR.transform.position);
+            stream.SendNext(Player.transform.Find("playerCanvas").transform.eulerAngles);
 
         }
         else if (stream.IsReading)
         {
             ArmL.transform.position=(Vector3)stream.ReceiveNext();
             ArmR.transform.position = (Vector3)stream.ReceiveNext();
+            Player.transform.Find("playerCanvas").transform.eulerAngles= (Vector3)stream.ReceiveNext();
+
+
 
         }
     }
@@ -44,8 +48,8 @@ public class Aim : MonoBehaviour, IPunObservable
         rotZ =Mathf.Atan2(rotation.y, rotation.x) * (Mathf.Rad2Deg );
     //   transform.position=rotation2;
         transform.rotation =Quaternion.Euler(0,0,rotZ);
-       
 
+        Player.transform.Find("playerCanvas").transform.eulerAngles = new Vector3(0, 0, 0);
 
         //print(rotation);
         //if (ArmR.transform.position.x > 0)
@@ -67,11 +71,13 @@ public class Aim : MonoBehaviour, IPunObservable
             if (rotation.x > 0)
             {
                 Player.transform.eulerAngles = new Vector3(0, 0, 0); // Flipped
+               
 
             }
             else if (rotation.x < 0)
             {
                 Player.transform.eulerAngles = new Vector3(0, 180, 0); // Flipped
+                
 
             }
         }
